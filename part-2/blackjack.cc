@@ -56,6 +56,7 @@ bool IsCardName(const std::string& str) {
 bool AllArgumentsValid(const std::vector<std::string>& arguments) {
   for (int i = 1; i < arguments.size(); ++i) {
     if (!IsCardName(arguments.at(i))) {
+      std::cout << "error: invalid card '" << arguments.at(i) << "'\n";
       return false;
     }
   }
@@ -134,7 +135,6 @@ int main(int argc, char* argv[]) {
   std::vector<std::string> arguments(argv, argv + argc);
 
   if (!AllArgumentsValid(arguments)) {
-    std::cout << "error: invalid card";
     return -1;
   }
 
