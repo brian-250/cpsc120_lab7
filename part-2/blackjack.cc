@@ -35,8 +35,7 @@ bool IsFaceCard(const std::string& card_name) {
 // Return true if card_name is the name of a number card ("2" through "10");
 // or false otherwise.
 bool IsNumberCard(const std::string& card_name) {
-  int number = std::stoi(card_name);
-  if ((number < 11) && (number > 1)) {
+  if ((std::stoi(card_name) < 11) && (std::stoi(card_name) > 1)) {
     return true;
   }
   return false;
@@ -85,11 +84,11 @@ int CardPoints(const std::string& card_name) {
 // this function. 
 bool HandContainsAce(const std::vector<std::string>& arguments) {
   for (int i = 1; i < arguments.size(); ++i) {
-    if (!IsAce(arguments.at(i))) {
-      return false;
+    if (IsAce(arguments.at(i))) {
+      return true;
     }
   }
-  return true;
+  return false;
 }
 
 // Return true if score represents a bust; or false otherwise.
