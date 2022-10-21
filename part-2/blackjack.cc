@@ -17,8 +17,6 @@
 // Return true if card_name is the name of the ace card ("A"); or
 // false otherwise.
 bool IsAce(const std::string& card_name) {
-  // TODO: write statements to implement this function, and delete this comment
-  
   if (card_name == "A") {
     return true;
   }
@@ -31,28 +29,25 @@ bool IsFaceCard(const std::string& card_name) {
   if ((card_name == "J") || (card_name == "Q") || (card_name == "K")) {
     return true;
   }
-  return false; // TODO: replace this return statement with one that actually works
+  return false;
 }
 
 // Return true if card_name is the name of a number card ("2" through "10");
 // or false otherwise.
 bool IsNumberCard(const std::string& card_name) {
-  
   int number = std::stoi(card_name);
   if ((number < 11) && (number > 1)) {
     return true;
   }
-  return false; // TODO: replace this return statement with one that actually works
+  return false;
 }
 
 // Return true if card_name is any valid card name; or false otherwise.
 bool IsCardName(const std::string& str) {
-  // TODO: write statements to implement this function, and delete this comment
-  // HINT: call IsAce, IsFaceCard, and IsNumberCard, and combine their return values
   if ((IsAce(str)) || (IsFaceCard(str)) || (IsNumberCard(str))) {
     return true;
   }
-  return false; // TODO: replace this return statement with one that actually works
+  return false;
 }
 
 // Return true if every argument (after the command name) is a valid card name;
@@ -60,14 +55,12 @@ bool IsCardName(const std::string& str) {
 // The first element of arguments contains the command name, and is ignored by
 // this function.
 bool AllArgumentsValid(const std::vector<std::string>& arguments) {
-  // TODO: write statements to implement this function, and delete this comment
   for (int i = 1; i < arguments.size(); ++i) {
     if (!IsCardName(arguments.at(i))) {
       return false;
     }
   }
-  // HINT: write a loop, cand call IsCardName in the body of the loop
-  return true; // TODO: replace this return statement with one that actually works
+  return true;
 }
 
 // Return the number of points that the given card is worth.
@@ -115,10 +108,6 @@ bool IsBust(int score) {
 // The first element of arguments contains the command name, and is ignored by
 // this function. 
 int HandScore(const std::vector<std::string>& arguments) {
-  // TODO: write statements to implement this function, and delete this comment
-
-  // HINT: First calculate the points, except for the ace bonus.
-  // Write a loop, cand call CardPoints in the body of the loop.
   int sum{0};
   for (int i = 1; i < arguments.size(); ++i) {
     sum += CardPoints((arguments.at(i)));
@@ -126,7 +115,6 @@ int HandScore(const std::vector<std::string>& arguments) {
   if (!IsBust(sum+10) && (HandContainsAce(arguments))) {
     sum += 10;
   }
-  // HINT: write a loop, cand call IsCardName in the body of the loop
   return sum;
 }
 
@@ -141,8 +129,6 @@ void PrintScore(int score) {
   } else {
     std::cout << "Score is " << score << ", BUST";
   }
-  // TODO: write statements to implement this function, and delete this comment
-  // HINT: You will need an if statement. This function is easiest if it calls IsBust
 }
 
 int main(int argc, char* argv[]) {
