@@ -45,7 +45,7 @@ bool IsCardName(const std::string& str) {
 bool AllArgumentsValid(const std::vector<std::string>& arguments) {
   for (int i = 1; i < arguments.size(); ++i) {
     if (!IsCardName(arguments.at(i))) {
-      std::cout << "error: invalid card '" << arguments.at(i) << "'\n";
+      std::cout << "error: unknown card '" << arguments.at(i) << "'\n";
       return false;
     }
   }
