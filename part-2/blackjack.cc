@@ -14,8 +14,6 @@
 #include <string>
 #include <vector>
 
-// Return true if card_name is the name of the ace card ("A"); or
-// false otherwise.
 bool IsAce(const std::string& card_name) {
   if (card_name == "A") {
     return true;
@@ -23,8 +21,6 @@ bool IsAce(const std::string& card_name) {
   return false;
 }
 
-// Return true if card_name is the name of the jack ("J"), queen ("Q"),
-// or king ("K"); or false otherwise.
 bool IsFaceCard(const std::string& card_name) {
   if ((card_name == "J") || (card_name == "Q") || (card_name == "K")) {
     return true;
@@ -32,8 +28,6 @@ bool IsFaceCard(const std::string& card_name) {
   return false;
 }
 
-// Return true if card_name is the name of a number card ("2" through "10");
-// or false otherwise.
 bool IsNumberCard(const std::string& card_name) {
   if ((std::stoi(card_name) < 11) && (std::stoi(card_name) > 1)) {
     return true;
@@ -41,7 +35,6 @@ bool IsNumberCard(const std::string& card_name) {
   return false;
 }
 
-// Return true if card_name is any valid card name; or false otherwise.
 bool IsCardName(const std::string& str) {
   if ((IsAce(str)) || (IsFaceCard(str)) || (IsNumberCard(str))) {
     return true;
@@ -49,10 +42,6 @@ bool IsCardName(const std::string& str) {
   return false;
 }
 
-// Return true if every argument (after the command name) is a valid card name;
-// or false otherwise.
-// The first element of arguments contains the command name, and is ignored by
-// this function.
 bool AllArgumentsValid(const std::vector<std::string>& arguments) {
   for (int i = 1; i < arguments.size(); ++i) {
     if (!IsCardName(arguments.at(i))) {
@@ -63,11 +52,6 @@ bool AllArgumentsValid(const std::vector<std::string>& arguments) {
   return true;
 }
 
-// Return the number of points that the given card is worth.
-// A face card is worth 10 points.
-// A number card is worth its number.
-// This function ignores the ace bonus, so an ace is worth 1 point.
-// This function may assume that card_name is a valid card name.
 int CardPoints(const std::string& card_name) {
   if (IsAce(card_name)) {
     return 1;
@@ -80,9 +64,6 @@ int CardPoints(const std::string& card_name) {
   } 
 }
 
-// Return true if the arguments contain an ace.
-// The first element of arguments contains the command name, and is ignored by
-// this function. 
 bool HandContainsAce(const std::vector<std::string>& arguments) {
   for (int i = 1; i < arguments.size(); ++i) {
     if (IsAce(arguments.at(i))) {
@@ -92,21 +73,13 @@ bool HandContainsAce(const std::vector<std::string>& arguments) {
   return false;
 }
 
-// Return true if score represents a bust; or false otherwise.
-// A bust happens when score exceeds 21.
 bool IsBust(int score) {
   if (score > 21) {
     return true;
   }
   return false;
 }
-
-// Return the total score of the cards named by the arguments.
-// Each card contributes points as described for the CardPoints function above.
-// In addition, if the hand contains an ace, the ace counts for another 10
-// points, unless that would cause a bust.
-// The first element of arguments contains the command name, and is ignored by
-// this function. 
+ 
 int HandScore(const std::vector<std::string>& arguments) {
   int sum{0};
   for (int i = 1; i < arguments.size(); ++i) {
@@ -118,11 +91,6 @@ int HandScore(const std::vector<std::string>& arguments) {
   return sum;
 }
 
-// Print out a description of the score.
-// If there is no bust (score is less than or equal to 21), print output
-// "Score is *SCORE*"
-// If there is a bust (score is greater than 21), print output
-// "Score is *SCORE*, BUST"
 void PrintScore(int score) {
   if (score < 22) {
     std::cout << "Score is " << score;
@@ -137,7 +105,6 @@ int main(int argc, char* argv[]) {
   if (!AllArgumentsValid(arguments)) {
     return -1;
   }
-
   PrintScore(HandScore(arguments));
   return 0;
 }
