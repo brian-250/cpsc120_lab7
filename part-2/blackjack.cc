@@ -93,9 +93,9 @@ int HandScore(const std::vector<std::string>& arguments) {
 
 void PrintScore(int score) {
   if (score < 22) {
-    std::cout << "Score is " << score;
+    std::cout << "Score is " << score << "\n";
   } else {
-    std::cout << "Score is " << score << ", BUST";
+    std::cout << "Score is " << score << ", BUST\n";
   }
 }
 
