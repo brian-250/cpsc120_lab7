@@ -102,7 +102,7 @@ bool IsBust(int score) {
 
 // Return the total score of the cards named by the arguments.
 // Each card contributes points as described for the CardPoints function above.
-// In addition, if the hadn contains an ace, the ace counts for another 10
+// In addition, if the hand contains an ace, the ace counts for another 10
 // points, unless that would cause a bust.
 // The first element of arguments contains the command name, and is ignored by
 // this function. 
@@ -111,7 +111,7 @@ int HandScore(const std::vector<std::string>& arguments) {
   for (int i = 1; i < arguments.size(); ++i) {
     sum += CardPoints((arguments.at(i)));
   }
-  if (!IsBust(sum+10) && (HandContainsAce(arguments))) {
+  if (!(IsBust(sum+10)) && (HandContainsAce(arguments))) {
     sum += 10;
   }
   return sum;
@@ -124,7 +124,7 @@ int HandScore(const std::vector<std::string>& arguments) {
 // "Score is *SCORE*, BUST"
 void PrintScore(int score) {
   if (score < 22) {
-  std::cout << "Score is " << score;
+    std::cout << "Score is " << score;
   } else {
     std::cout << "Score is " << score << ", BUST";
   }
