@@ -44,7 +44,7 @@ bool IsCardName(const std::string& str) {
 
 bool AllArgumentsValid(const std::vector<std::string>& arguments) {
   for (int i = 1; i < arguments.size(); ++i) {
-    if (!IsCardName(arguments.at(i))) {
+    if (!IsCardName(arguments.at(i)) || CardPoints(arguments.at(i)) == -1) {
       std::cout << "error: unknown card '" << arguments.at(i) << "'\n";
       return false;
     }
@@ -55,13 +55,13 @@ bool AllArgumentsValid(const std::vector<std::string>& arguments) {
 int CardPoints(const std::string& card_name) {
   if (IsAce(card_name)) {
     return 1;
-  }
-  else if (IsFaceCard(card_name)) {
+  } else if (IsFaceCard(card_name)) {
     return 10;
-  }
-  else {
+  } else if (IsNumberCard(card_name)) {
     return std::stoi(card_name);
-  } 
+  } else {
+    return -1;
+  }  
 }
 
 bool HandContainsAce(const std::vector<std::string>& arguments) {
